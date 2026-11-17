@@ -1,0 +1,5 @@
+class nodo {
+    constructor(dato){
+        
+    }
+}
