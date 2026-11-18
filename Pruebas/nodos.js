@@ -24,7 +24,7 @@ const nodo2 = new Nodo (atencion2);
 const nodo3 = new Nodo (atencion3);
  
 //le doy la referencia al nodo
-nodo1.siguente = nodo2;
+nodo1.siguente = nodo2;   
 nodo2.siguente = nodo3;
 
 // declaro cabeza
