@@ -1,7 +1,7 @@
 class Nodo {
     constructor(dato){
         this.dato = dato;
-        this.siguente = null
+        this.siguiente = null
     }
 }
 module.exports = Nodo    

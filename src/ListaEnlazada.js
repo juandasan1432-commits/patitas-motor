@@ -24,8 +24,6 @@ class ListaEnlazadas{
             //asigno que si hay mas nodos se agregue en la cola
             this.cola.siguiente = nuevoNodo
 
-            //actualizo, aqui ya el nodo se agrego a mi lista.
-            //Pero la cola sigue referenciada con nodo2.
             //actualizamos para que la cola sea el nuevoNodo
             this.cola = nuevoNodo
         }
@@ -89,16 +87,109 @@ class ListaEnlazadas{
           return arreglo; 
     }
 
+    //verificamos si la lista esta vacia 
     estaVacia() {
     // verificamos si la cabeza es null
-    // devolvemos true o false
+    // devuelve si es true o false
     return this.cabeza === null;
 }
-
-
+    //obtenemos el tamaño de la lista
     obtenerTamanio() {
     // devolvemos la cantidad de nodos
     return this.tamanio;
+}
+
+//condicion buscar
+buscar(condicion){
+    
+    let actual = this.cabeza;
+
+    while (actual !== null){
+
+        if (condicion(actual.dato)){
+            return actual.dato
+        }
+        actual = actual.siguiente;
+    }
+
+    return null
+
+}
+
+//insertarDespuesDe
+insertarDespuesDe(condicion, dato){
+    let actual = this.cabeza;
+
+    while(actual !== null){
+
+        //si la condicion se cumple en la posicion actual.dato seguira
+        if(condicion(actual.dato)){
+
+            //si se cumple condicion, crea un nuevo nodo 
+            const nodo1 = new Nodo (dato);
+
+            //el nuevo nodo1 que inserte apunta al nodo despues del actual 
+            nodo1.siguiente = actual.siguiente
+
+            //el actual me va apuntar a el nodo1 que estoy insertando
+            actual.siguiente = nodo1
+
+            // si el nodo va a ser el ultimo (cola) entre
+            if (actual === this.cola){
+                this.cola = nodo1
+            }
+
+            //aumenta de tamaño si agrego otro nodo
+            this.tamanio++;
+            return dato
+            }
+
+            actual = actual.siguiente
+
+    }
+}
+
+//ELIMINAR(CONDICION)
+eliminar(condicion){
+    let actual = this.cabeza
+    let anterior = null
+
+    while (actual !== null){ 
+
+        if(condicion(actual.dato)){
+        //variable para gurdar el dato eliminado
+        const eliminado = actual.dato
+            //condicion, si anterior es igual a null, es la cabeza
+            if(anterior === null){
+                this.cabeza = actual.siguiente
+            }
+            
+            //condicion, si anterior es diferente de null, el nodo anterior a la posicion actual, apuntara al nodo que le sigue a la posicion actual
+            if(anterior !== null){
+                anterior.siguiente = actual.siguiente
+            }
+
+            //condicion, si actual es igual a la cola, actualizar la cola al nodo anterior
+            if(actual === this.cola){
+                this.cola = anterior;
+            }
+
+            //disminuir tamaño
+              this.tamanio--;
+
+            //devolver el dato eliminado 
+             return eliminado
+        
+        }
+        //definimos como se avanza. anterior siempre va a ser actual, y actual va a ser el nodo siguiente.
+        anterior = actual;
+        actual= actual.siguiente
+
+    }
+    //si no encontramos el nodo, va a saltar null (no existente )
+    return null 
+
+
 }
 }
 
