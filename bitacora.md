@@ -366,3 +366,28 @@ O(1) significa que podemos realizar una operación directamente, sin que aumente
 O(n) significa que la cantidad de pasos puede aumentar dependiendo de cuántos nodos tenga nuestra lista.
 
 Aprendimos que lo más importante al eliminar o insertar es actualizar correctamente las referencias para no dejar nuestra lista cortada.
+
+
+----------------------- Punto 5 mini reto 4 ----------------------------------
+
+# Punto 5. Comparación entre Lista Enlazada y Array
+
+### 1. Agregar al final
+- **Lista enlazada: O(1)** — Utilizamos `this.cola` para conectar directamente el nuevo nodo al final.
+- **Array: O(1) amortizado** — Utilizamos `push()` para agregar un elemento al final.
+
+### 2. Agregar al inicio
+- **Lista enlazada: O(1)** — Creamos un nodo, lo conectamos con la cabeza actual y actualizamos `this.cabeza`.
+- **Array: O(n)** — Utilizamos `unshift()`, que debe desplazar los elementos para hacer espacio al principio.
+
+### 3. Acceder a la atención número k
+- **Lista enlazada: O(n)** — Debemos recorrer los nodos desde la cabeza hasta llegar a la posición que necesitamos.
+- **Array: O(1)** — Podemos acceder directamente a la posición usando su índice, por ejemplo `atenciones[2]`.
+
+### 4. Buscar una atención
+- **Lista enlazada: O(n)** — Recorremos los nodos con `buscar(condicion)` hasta encontrar la atención.
+- **Array: O(n)** — Podemos utilizar `find()` para buscar una atención, revisando los elementos hasta encontrarla.
+
+### 5. Eliminar la primera atención
+- **Lista enlazada: O(1)** — Actualizamos `this.cabeza` para que apunte al siguiente nodo, sin recorrer toda la lista.
+- **Array: O(n)** — Utilizamos `shift()`, que elimina el primer elemento y desplaza los demás.
